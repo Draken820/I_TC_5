@@ -5,3 +5,7 @@ Este es un sistema basado en la gestion de todas tus targetas bancarias ya sean 
 es brindar un recordatorio para poder pagar sus targetas bancarias de credito.
 
 ### instalacion
+
+### Manual de usuario
+
+### stats
