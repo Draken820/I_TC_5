@@ -12,7 +12,8 @@ SHOW search_path
 
 DROP TABLE IF EXISTS usuarios CASCADE;
 DROP TABLE IF EXISTS cards CASCADE;
-DROP TABLE IF EXISTS 
+DROP TABLE IF EXISTS card_Drebito;
+DROP TABLE IF EXISTS card_Credito;
 DROP TABLE IF EXISTS usuarios
 show search_path
 

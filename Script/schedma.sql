@@ -1,4 +1,4 @@
-
+--laputagamalamami
 ------------ Usuarios ------------
 CREATE TABLE usuarios(
 id_Usuario serial PRIMARY KEY,
