@@ -8,86 +8,91 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class LoginFrm extends JFrame {
-    private JTextField txtEmail;
-    private JPasswordField txtPass;
-    private JButton btnSubmit;
+    // 1. Componentes de la pantalla (Cajas de texto y botón)
+    private JTextField cajaEmail;
+    private JPasswordField cajaPass;
+    private JButton botonSubmit;
 
     public LoginFrm() {
-        // 1. Configuración de la Ventana Principal
+        // 2. Configurar la ventana principal
         setTitle("Iniciar Sesión - Ring-CARDS");
-        setSize(400, 320); // Un poco más alta para dar aire al botón
+        setSize(400, 320);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
-        setLayout(null); // Layout absoluto para controlar las posiciones exactas
+        setLayout(null); // Nos permite acomodar los objetos por coordenadas
 
-        // 2. Componentes del Email
-        JLabel lblEmail = new JLabel("Email:");
-        lblEmail.setBounds(40, 50, 100, 30); // Posición X, Y, Ancho, Alto
-        add(lblEmail);
+        // 3. Crear y acomodar la sección de Email
+        JLabel etiquetaEmail = new JLabel("Email:");
+        etiquetaEmail.setBounds(40, 50, 100, 30);
+        add(etiquetaEmail);
 
-        txtEmail = new JTextField();
-        txtEmail.setBounds(140, 50, 200, 30);
-        add(txtEmail);
+        cajaEmail = new JTextField();
+        cajaEmail.setBounds(140, 50, 200, 30);
+        add(cajaEmail);
 
-        // 3. Componentes de la Contraseña 
-        JLabel lblPass = new JLabel("Contraseña:");
-        lblPass.setBounds(40, 110, 100, 30); // Bajamos un poco la altura para separar
-        add(lblPass);
+        // 4. Crear y acomodar la sección de Contraseña
+        JLabel etiquetaPass = new JLabel("Contraseña:");
+        etiquetaPass.setBounds(40, 110, 100, 30);
+        add(etiquetaPass);
 
-        txtPass = new JPasswordField();
-        txtPass.setBounds(140, 110, 200, 30);
-        add(txtPass);
+        cajaPass = new JPasswordField();
+        cajaPass.setBounds(140, 110, 200, 30);
+        add(cajaPass);
 
-        // 4. Botón SUBMIT 
-        btnSubmit = new JButton("SUBMIT");
-        btnSubmit.setBounds(140, 180, 120, 35); // Más ancho y alto para que no se corte el texto
-        add(btnSubmit);
+        // 5. Crear y acomodar el Botón SUBMIT
+        botonSubmit = new JButton("SUBMIT");
+        botonSubmit.setBounds(140, 180, 120, 35);
+        add(botonSubmit);
 
-        // Botón al hacer clic
-        btnSubmit.addActionListener(new ActionListener() {
+        // 6. Programar la acción: ¿Qué pasa al dar clic al botón?
+        botonSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                validarUsuario();
+                validarIngreso(); // Llama a la función de abajo
             }
         });
     }
 
-    private void validarUsuario() {
-        String email = txtEmail.getText();
-        String pass = new String(txtPass.getPassword());
+    // 7. Función lógica para revisar los datos en la Base de Datos
+    private void validarIngreso() {
+        String email = cajaEmail.getText();
+        String pass = new String(cajaPass.getPassword());
 
-        // Validación de campos vacíos antes de ir a la Base de Datos
+        // Si el usuario dejó algún campo vacío, frena el proceso de inmediato
         if (email.isEmpty() || pass.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, llene todos los campos.");
             return;
         }
 
+        // Conectamos a PostgreSQL
         Conexion cc = new Conexion();
         Connection cn = cc.conectar();
 
+        // Consulta SQL para buscar al usuario
         String sql = "SELECT * FROM usuarios WHERE email = ? AND pass = ?";
 
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, email);
             pst.setString(2, pass);
-            ResultSet rs = pst.executeQuery();
+            ResultSet resultado = pst.executeQuery();
 
-            if (rs.next()) {
+            if (resultado.next()) {
+                // SI COINCIDE: Da la bienvenida, cierra el login y abre el menú
                 JOptionPane.showMessageDialog(null, "¡Bienvenido al sistema!");
-                // Aabrir la siguiente ventana 
-                this.dispose(); // Cierra y destruye la ventana de Login
-                new MenuFrm().setVisible(true);
+                this.dispose(); 
+                new MenuFrm().setVisible(true); 
             } else {
+                // SI NO COINCIDE: Avisa que falló
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
             }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al validar: " + ex.getMessage());
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "Error en el sistema: " + error.getMessage());
         }
     }
 
+    // 8. El arrancador principal del programa
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
             new LoginFrm().setVisible(true);

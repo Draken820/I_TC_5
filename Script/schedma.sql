@@ -4,8 +4,7 @@ CREATE TABLE usuarios(
 id_Usuario serial PRIMARY KEY,
 nombre text NOT NULL,
 pass text NOT NULL,
-email text	UNIQUE NOT NULL,
-telefono text NOT NULL
+email text	UNIQUE NOT NULL
 );
 
 ------------ CARDS CREDITO ------------ 
