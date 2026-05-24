@@ -1,0 +1,44 @@
+ESTRUCTURA EN JAVA MAIN
+-JPanel LOGIN
+ingreso 
+registro
+
+
+CARDS(
+-JPanel CREDITO
+todas las cards de crédito
+movimientos
+
+-JPanel DEBITO
+Movimientos
+Agg ingresos
+agg egresos
+)
+
+
+-JPanel MODIFICACION
+agrega cards
+eimina cards
+elimina movimientos crédito/debito
+Eliminar cuenta
+
+
+JPanel Principal
+Muestra movimientos cualquier movimineot (aun en duda si se tiene 
+q mostar crédito y debito juntados por dia o separadas)
+ver stats por mes 
+	en 2 graficos se muestra
+		-cantidad de tipo de ingresos
+		-cantidad de tipo de egresos
+ 
+
+
+•	rama main, 
+•	rama docs/, 
+•	ramas feature/data-base.
+•	Rama feature/Java-Main
+•	SubRama feature/JM-Login
+•	SubRama feature/JM-Cards
+•	SubRama feature/JM-Modificacion
+•	SubRama feature/JM-reportes
+•	Rama Dev/Integracion-Braches
