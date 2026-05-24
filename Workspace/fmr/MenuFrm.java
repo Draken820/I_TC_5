@@ -13,7 +13,7 @@ public class MenuFrm extends JFrame {
         setLocationRelativeTo(null);
         setLayout(null);
 
-        // --- Botón: GESTIÓN DE TARJETAS ---
+        // Botón: GESTIÓN DE TARJETAS 
         btnTarjetas = new JButton("GESTIÓN DE TARJETAS");
         btnTarjetas.setBounds(80, 40, 240, 40);
         add(btnTarjetas);
@@ -21,7 +21,7 @@ public class MenuFrm extends JFrame {
             new TarjetasFrm().setVisible(true);
         });
 
-        // --- Botón: VER DETALLE DE TARJETA ---
+        // Botón: VER DETALLE DE TARJETA 
         btndetalle = new JButton("VER DETALLE DE TARJETA");
         btndetalle.setBounds(80, 100, 240, 40);
         add(btndetalle);
@@ -31,12 +31,12 @@ public class MenuFrm extends JFrame {
             detalle.setVisible(true);
         });
 
-        // --- Botón: NOTIFICACIONES ---
+        //Botón: NOTIFICACIONES 
         btnNotificaciones = new JButton("NOTIFICACIONES");
         btnNotificaciones.setBounds(80, 160, 240, 40);
         add(btnNotificaciones);
 
-        // --- Botón: CERRAR SESIÓN ---
+        // Botón: CERRAR SESIÓN 
         JButton btnSalir = new JButton("Cerrar Sesión");
         btnSalir.setBounds(130, 240, 140, 30);
         add(btnSalir);
