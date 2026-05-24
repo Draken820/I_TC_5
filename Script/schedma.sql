@@ -3,6 +3,8 @@
 CREATE TABLE usuarios(
 id_Usuario serial PRIMARY KEY,
 nombre text NOT NULL,
+ap text NOT NULL,
+am text NOT NULL,
 pass text NOT NULL,
 email text	UNIQUE NOT NULL,
 telefono text NOT NULL
@@ -86,12 +88,3 @@ pago_min numeric NOT NULL,
 pago_SinInteres numeric NOT NULL,
 CONSTRAINT fk_CardCredito FOREIGN KEY (id_CardCredito) REFERENCES cardsCredito(id_CardCredito) ON DELETE CASCADE
 );
-
-
-/*CREATE TABLE presupuestos(
-id_Presupuesto serial PRIMARY KEY,
-id_Usuario integer,
-id_Categoria integer,
-montoLimite numeric CONSTRAINT validar_montoLimite CHECK (montoLimite >=0),
-periodo date
-);*/
